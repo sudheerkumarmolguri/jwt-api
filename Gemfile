@@ -18,6 +18,7 @@ gem 'bcrypt'
 gem 'jwt'
 gem 'rack-cors'
 gem "sidekiq"
+gem "dotenv-rails"
 
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]

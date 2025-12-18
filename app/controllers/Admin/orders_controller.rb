@@ -11,10 +11,13 @@ class Admin::OrdersController < ApplicationController
     def update
       order = Order.find(params[:id])
       
-      OrderApprovalJob.perform_now(order.id)
+      #OrderApprovalJob.perform_now(order.id)
+      #OrderMailer.perform_now(order.id)
 
       if params[:order][:status] == "approved"
         OrderApprovalJob.perform_later(order.id)
+        OrderMailer.approved(order).deliver_later
+
       elsif params[:order][:status] == "rejected"
         OrderRejectionJob.perform_later(order.id)
       end
